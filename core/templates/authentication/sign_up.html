@@ -1,0 +1,408 @@
+<!doctype html>
+<html lang="en">
+    {% load static %}
+    <head>
+
+        <meta charset="utf-8" />
+        <title>HRM Register</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta content="HRM Portal of Integer Telecom Services" name="description" />
+        <meta content="Integer Telecom Services" name="author" />
+        <!-- App favicon -->
+        <link rel="shortcut icon" href="{% static 'images/favicon.ico' %}">
+
+        <!-- preloader css -->
+        <link rel="stylesheet" href="{% static 'css/preloader.min.css' %}" type="text/css" />
+
+        <!-- Bootstrap Css -->
+        <link href="{% static 'css/bootstrap.min.css' %}" id="bootstrap-style" rel="stylesheet" type="text/css" />
+        <!-- Icons Css -->
+        <link href="{% static 'css/icons.min.css' %}" rel="stylesheet" type="text/css" />
+        <!-- App Css-->
+        <link href="{% static 'css/app.min.css' %}" id="app-style" rel="stylesheet" type="text/css" />
+        <link href="{% static 'libs/sweetalert2/sweetalert2.min.css' %}" id="app-style" rel="stylesheet" type="text/css" />
+        <style>
+            /* Chrome, Safari, Edge, Opera */
+            input::-webkit-outer-spin-button,
+            input::-webkit-inner-spin-button {
+            -webkit-appearance: none;
+            margin: 0;
+            }
+
+            /* Firefox */
+            input[type=number] {
+            -moz-appearance: textfield;
+            }
+        </style>
+
+    </head>
+
+    <body>
+
+    <!-- <body data-layout="horizontal"> -->
+        <div class="auth-page">
+            <div class="container-fluid p-0">
+                <div class="row g-0">
+                    <div class="col-xxl-3 col-lg-4 col-md-5">
+                        <div class="auth-full-page-content d-flex p-sm-5 p-4">
+                            <div class="w-100">
+                                <div class="d-flex flex-column h-100">
+                                    <div class="mb-4 mb-md-5 text-center">
+                                        <a href="index.html" class="d-block auth-logo">
+                                            <img src="{% static 'images/iran.svg' %}" alt="HRM" height="28"> <span class="logo-txt">HRM</span>
+                                        </a>
+                                    </div>
+									{% for message in messages  %}  
+                                    <div class="alert alert-{{ message.tags }} alert-dismissible fade show" role="alert">{{ message }}
+										<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+									</div>
+                                    {% endfor %}
+                                    <div class="auth-content my-auto">
+                                        <div class="text-center">
+                                            <h5 class="mb-0">Register Account !</h5>
+                                            <p class="text-muted mt-2">Get your free HRM account now.</p>
+                                        </div>
+                                        <form class="needs-validation custom-form mt-4 pt-2" novalidate action="/signup" method="post">
+											{% csrf_token %}
+                                            <div class="form-floating mb-3">
+											
+                                                <div class="input-group" style="">
+                                                         <input type="text" class="form-control" value="" id="email" name="email" title="Email" placeholder="Email" required>
+                                                         <div class="input-group-text">@</div>
+                                                       <select name="email_domain" class="form-select">
+                                                       <option value="gmail.com">gmail.com</option>
+                                                       </select>
+                                                       <div class="invalid-feedback">
+                                                       Please enter email.
+                                                           </div>
+                                                       </div>
+                                               <div class="invalid-feedback Error_Int_Email">
+                                                   Please enter only @gmail.com.
+                                                 </div>
+                                               </div>
+                                               <div class="form-floating mb-3">
+                                                 <input type="number" class="form-control" value="" id="mobile" name="mobile" title="Mobile" placeholder="98977XXXXX" required>
+                                                 <label for="mobile">Mobile Number</label>
+                                                 <div class="invalid-feedback">
+                                                       Please enter mobile.
+                                                 </div>
+                                               </div>
+                                               <div class="form-floating mb-3">
+                                                 <input type="password" class="form-control" id="password" name="password" title="Password" placeholder="Enter Password" required>
+                                                 <label for="password">Password</label>
+                                                 <div class="invalid-feedback">
+                                                       Please enter password.
+                                                 </div>
+                                               </div>
+                                               <div class="form-floating mb-3">
+                                                 <input type="password" class="form-control" id="confirm_password" name="confirm_password" title="Confirm Password" placeholder="Confirm Password" required>
+                                                 <label for="confirm_password">Confirm Password</label>
+                                                 <div class="invalid-feedback">
+                                                       Password doesnot match.
+                                                 </div>
+                                               </div>
+                                               
+                                               
+                                               <div class="mb-4">
+                                                   <div class="form-check mb-3">
+                                                       <input class="form-check-input" type="radio" name="formRadios" id="formRadios1" checked>
+                                                       <label class="form-check-label" for="formRadios1"> I agree to the integer <a href="#" class="text-primary" data-bs-toggle="modal" data-bs-target="#termsAndCondition">Terms & condition</a>
+                                                       </label>
+                                                   </div>
+                                                   <!--<p class="mb-0">I agree to the integer <a href="#" class="text-primary">Terms & condition</a></p>-->
+                                               </div>
+                                               <div class="mb-3">
+                                                   <button class="btn btn-primary w-100 waves-effect waves-light" type="submit">Register</button>
+                                               </div>
+                                        </form>
+
+                                        <div class="mt-5 text-center">
+                                            <p class="text-muted mb-0">Already have an account ? <a href="/login" class="text-primary fw-semibold"> Login </a> </p>
+                                        </div>
+                                    </div>
+                                    <div class="mt-4 mt-md-5 text-center">
+                                        <p class="mb-0">© <script>document.write(new Date().getFullYear())</script> Team Integer. Crafted with <i class="mdi mdi-heart text-danger"></i> by Integer Telecom Inc.</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- end auth full page content -->
+                    </div>
+                    <!-- end col -->
+                    <div class="col-xxl-9 col-lg-8 col-md-7">
+                        <div class="auth-bg pt-md-5 p-4 d-flex">
+                            <div class="bg-overlay bg-primary"></div>
+                            <ul class="bg-bubbles">
+                                <li></li>
+                                <li></li>
+                                <li></li>
+                                <li></li>
+                                <li></li>
+                                <li></li>
+                                <li></li>
+                                <li></li>
+                                <li></li>
+                                <li></li>
+                            </ul>
+                            <!-- end bubble effect -->
+                            <div class="row justify-content-center align-items-center">
+                                <div class="col-xl-7">
+                                    <div class="p-0 p-sm-4 px-xl-0">
+                                        <div id="reviewcarouselIndicators" class="carousel slide" data-bs-ride="carousel">
+                                            <div class="carousel-indicators carousel-indicators-rounded justify-content-start ms-0 mb-0">
+                                                <button type="button" data-bs-target="#reviewcarouselIndicators" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+                                                <button type="button" data-bs-target="#reviewcarouselIndicators" data-bs-slide-to="1" aria-label="Slide 2"></button>
+                                                <button type="button" data-bs-target="#reviewcarouselIndicators" data-bs-slide-to="2" aria-label="Slide 3"></button>
+                                            </div>
+                                            <!-- end carouselIndicators -->
+                                            <div class="carousel-inner">
+                                                <div class="carousel-item active">
+                                                    <div class="testi-contain text-white">
+                                                        <i class="bx bxs-quote-alt-left text-success display-6"></i>
+
+                                                        <h4 class="mt-4 fw-medium lh-base text-white">“I feel confident
+                                                            imposing change
+                                                            on myself. It's a lot more progressing fun than looking back.
+                                                            That's why I always try to push myself get the Goals I set, Integer help me in it.”
+                                                        </h4>
+                                                        <div class="mt-4 pt-3 pb-5">
+                                                            <div class="d-flex align-items-start">
+                                                                <div class="flex-shrink-0">
+                                                                    <img src="{% static 'images/users/kr.png' %}" class="avatar-md img-fluid rounded-circle" alt="...">
+                                                                </div>
+                                                                <div class="flex-grow-1 ms-3 mb-4">
+                                                                    <h5 class="font-size-18 text-white">Kunj Rai    </h5>
+                                                                    <p class="mb-0 text-white-50">Account Manager</p>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+                                                <div class="carousel-item">
+                                                    <div class="testi-contain text-white">
+                                                        <i class="bx bxs-quote-alt-left text-success display-6"></i>
+
+                                                        <h4 class="mt-4 fw-medium lh-base text-white">“Our task must be to
+                                                            free ourselves by widening our circle of compassion to embrace. We get the environment to do the same in Integer.”</h4>
+                                                        <div class="mt-4 pt-3 pb-5">
+                                                            <div class="d-flex align-items-start">
+                                                                <div class="flex-shrink-0">
+                                                                    <img src="{% static 'images/users/vikram.jpg' %}" class="avatar-md img-fluid rounded-circle" alt="...">
+                                                                </div>
+                                                                <div class="flex-grow-1 ms-3 mb-4">
+                                                                    <h5 class="font-size-18 text-white">Vikram Singh
+                                                                    </h5>
+                                                                    <p class="mb-0 text-white-50">Project Manager (PMO)</p>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+                                                <div class="carousel-item">
+                                                    <div class="testi-contain text-white">
+                                                        <i class="bx bxs-quote-alt-left text-success display-6"></i>
+
+                                                        <h4 class="mt-4 fw-medium lh-base text-white">“I've learned that
+                                                            people will forget what you said, people will forget what you
+                                                            did,
+                                                            but people will never forget
+                                                            how donec in efficitur lectus, nec lobortis metus you made them
+                                                            feel.”</h4>
+                                                        <div class="mt-4 pt-3 pb-5">
+                                                            <div class="d-flex align-items-start">
+                                                                <img src="{% static 'images/users/avatar-3.jpg' %}"
+                                                                    class="avatar-md img-fluid rounded-circle" alt="...">
+                                                                <div class="flex-1 ms-3 mb-4">
+                                                                    <h5 class="font-size-18 text-white">Ilse R. Eaton</h5>
+                                                                    <p class="mb-0 text-white-50">Manager
+                                                                    </p>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <!-- end carousel-inner -->
+                                        </div>
+                                        <!-- end review carousel -->
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- end col -->
+                </div>
+                <!-- end row -->
+            </div>
+            <!-- end container fluid -->
+        </div>
+<!-- Scrollable modal -->
+<div class="modal fade" id="termsAndCondition" tabindex="-1" role="dialog" aria-labelledby="termsAndConditionTitle" aria-hidden="true">
+	<div class="modal-dialog modal-dialog-scrollable">
+		<div class="modal-content">
+			<div class="modal-header">
+				<h5 class="modal-title" id="termsAndConditionTitle">Integer Terms & Condition</h5>
+				<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+			</div>
+			<div class="modal-body">
+				<p><b>AGREEMENT BETWEEN USER AND Employee Portal</b></p>
+				<p>The Employee Portal Web Site is comprised of various Web pages operated by Employee Portal.
+				The Employee Portal Web Site is offered to you conditioned on your acceptance without modification of the terms, conditions, and notices contained herein. Your use of the Employee Portal Web Site constitutes your agreement to all such terms, conditions, and notices.</p>
+				<p><b>MODIFICATION OF THESE TERMS OF USE</b></p>
+				<p>Employee Portal reserves the right to change the terms, conditions, and notices under which the Employee Portal Web Site is offered, including but not limited to the charges associated with the use of the Employee Portal Web Site.</p>
+				<p><b>LINKS TO THIRD PARTY SITES</b></p>
+				<p>The Employee Portal Web Site may contain links to other Web Sites ("Linked Sites"). The Linked Sites are not under the control of Employee Portal and Employee Portal is not responsible for the contents of any Linked Site, including without limitation any link contained in a Linked Site, or any changes or updates to a Linked Site. Employee Portal is not responsible for webcasting or any other form of transmission received from any Linked Site. Employee Portal is providing these links to you only as a convenience, and the inclusion of any link does not imply endorsement by Employee Portal of the site or any association with its operators.</p>
+				<p><b>NO UNLAWFUL OR PROHIBITED USE</b></p>
+				<p>As a condition of your use of the Employee Portal Web Site, you warrant to Employee Portal that you will not use the Employee Portal Web Site for any purpose that is unlawful or prohibited by these terms, conditions, and notices. You may not use the Employee Portal Web Site in any manner which could damage, disable, overburden, or impair the Employee Portal Web Site or interfere with any other party's use and enjoyment of the Employee Portal Web Site. You may not obtain or attempt to obtain any materials or information through any means not intentionally made available or provided for through the Employee Portal Web Sites.</p>
+				
+				<p><b>USE OF COMMUNICATION SERVICES</b></p>
+				<p>The Employee Portal Web Site may contain bulletin board services, chat areas, news groups, forums, communities, personal web pages, calendars, and/or other message or communication facilities designed to enable you to communicate with the public at large or with a group (collectively, "Communication Services"), you agree to use the Communication Services only to post, send and receive messages and material that are proper and related to the particular Communication Service. By way of example, and not as a limitation, you agree that when using a Communication Service, you will not:</p>
+				<ul>
+				<li>	Defame, abuse, harass, stalk, threaten or otherwise violate the legal rights (such as rights of privacy and publicity) of others.</li>
+				<li>	Publish, post, upload, distribute or disseminate any inappropriate, profane, defamatory, infringing, obscene, indecent or unlawful topic, name, material or information.</li>
+				<li>Upload files that contain software or other material protected by intellectual property laws (or by rights of privacy of publicity) unless you own or control the rights thereto or have received all necessary consents.</li>
+				<li>Upload files that contain viruses, corrupted files, or any other similar software or programs that may damage the operation of another's computer.</li>
+				<li>Advertise or offer to sell or buy any goods or services for any business purpose, unless such Communication Service specifically allows such messages.</li>
+				<li>Conduct or forward surveys, contests, pyramid schemes or chain letters.</li>
+				
+				<li>Download any file posted by another user of a Communication Service that you know, or reasonably should know, cannot be legally distributed in such manner.</li>
+				<li>Falsify or delete any author attributions, legal or other proper notices or proprietary designations or labels of the origin or source of software or other material contained in a file that is uploaded.</li>
+				<li>Restrict or inhibit any other user from using and enjoying the Communication Services.</li>
+				<li>Violate any code of conduct or other guidelines which may be applicable for any particular Communication Service.</li>
+				<li>Harvest or otherwise collect information about others, including e-mail addresses, without their consent.</li>
+				<li>Violate any applicable laws or regulations.</li>
+				</ul>
+				<p>Employee Portal has no obligation to monitor the Communication Services. However, Employee Portal reserves the right to review materials posted to a Communication Service and to remove any materials in its sole discretion. Employee Portal reserves the right to terminate your access to any or all of the Communication Services at any time without notice for any reason whatsoever.
+
+				Employee Portal reserves the right at all times to disclose any information as necessary to satisfy any applicable law, regulation, legal process or governmental request, or to edit, refuse to post or to remove any information or materials, in whole or in part, in Employee Portal's sole discretion.
+
+				Always use caution when giving out any personally identifying information about yourself or your children in any Communication Service. Employee Portal does not control or endorse the content, messages or information found in any Communication Service and, therefore, Employee Portal specifically disclaims any liability with regard to the Communication Services and any actions resulting from your participation in any Communication Service. Managers and hosts are not authorized Employee Portal spokespersons, and their views do not necessarily reflect those of Employee Portal.
+
+				Materials uploaded to a Communication Service may be subject to posted limitations on usage, reproduction and/or dissemination. You are responsible for adhering to such limitations if you download the materials.
+
+				</p>
+				
+				<p><b>MATERIALS PROVIDED TO Employee Portal OR POSTED AT ANY Employee Portal WEB SITE</b></p>
+				<p>Employee Portal does not claim ownership of the materials you provide to Employee Portal (including feedback and suggestions) or post, upload, input or submit to any Employee Portal Web Site or its associated services (collectively "Submissions"). However, by posting, uploading, inputting, providing or submitting your Submission you are granting Employee Portal, its affiliated companies and necessary sublicensees permission to use your Submission in connection with the operation of their Internet businesses including, without limitation, the rights to: copy, distribute, transmit, publicly display, publicly perform, reproduce, edit, translate and reformat your Submission; and to publish your name in connection with your Submission.
+
+No compensation will be paid with respect to the use of your Submission, as provided herein. Employee Portal is under no obligation to post or use any Submission you may provide and may remove any Submission at any time in Employee Portal's sole discretion.
+
+By posting, uploading, inputting, providing or submitting your Submission you warrant and represent that you own or otherwise control all of the rights to your Submission as described in this section including, without limitation, all the rights necessary for you to provide, post, upload, input or submit the Submissions.
+</p>
+				
+				<p><b>LIABILITY DISCLAIMER</b></p>
+				<p>THE INFORMATION, SOFTWARE, PRODUCTS, AND SERVICES INCLUDED IN OR AVAILABLE THROUGH THE Employee Portal WEB SITE MAY INCLUDE INACCURACIES OR TYPOGRAPHICAL ERRORS. CHANGES ARE PERIODICALLY ADDED TO THE INFORMATION HEREIN. Employee Portal AND/OR ITS SUPPLIERS MAY MAKE IMPROVEMENTS AND/OR CHANGES IN THE Employee Portal WEB SITE AT ANY TIME. ADVICE RECEIVED VIA THE Employee Portal WEB SITE SHOULD NOT BE RELIED UPON FOR PERSONAL, MEDICAL, LEGAL OR FINANCIAL DECISIONS AND YOU SHOULD CONSULT AN APPROPRIATE PROFESSIONAL FOR SPECIFIC ADVICE TAILORED TO YOUR SITUATION.
+
+Employee Portal AND/OR ITS SUPPLIERS MAKE NO REPRESENTATIONS ABOUT THE SUITABILITY, RELIABILITY, AVAILABILITY, TIMELINESS, AND ACCURACY OF THE INFORMATION, SOFTWARE, PRODUCTS, SERVICES AND RELATED GRAPHICS CONTAINED ON THE Employee Portal WEB SITE FOR ANY PURPOSE. TO THE MAXIMUM EXTENT PERMITTED BY APPLICABLE LAW, ALL SUCH INFORMATION, SOFTWARE, PRODUCTS, SERVICES AND RELATED GRAPHICS ARE PROVIDED "AS IS" WITHOUT WARRANTY OR CONDITION OF ANY KIND. Employee Portal AND/OR ITS SUPPLIERS HEREBY DISCLAIM ALL WARRANTIES AND CONDITIONS WITH REGARD TO THIS INFORMATION, SOFTWARE, PRODUCTS, SERVICES AND RELATED GRAPHICS, INCLUDING ALL IMPLIED WARRANTIES OR CONDITIONS OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE, TITLE AND NON-INFRINGEMENT.
+
+TO THE MAXIMUM EXTENT PERMITTED BY APPLICABLE LAW, IN NO EVENT SHALL Employee Portal AND/OR ITS SUPPLIERS BE LIABLE FOR ANY DIRECT, INDIRECT, PUNITIVE, INCIDENTAL, SPECIAL, CONSEQUENTIAL DAMAGES OR ANY DAMAGES WHATSOEVER INCLUDING, WITHOUT LIMITATION, DAMAGES FOR LOSS OF USE, DATA OR PROFITS, ARISING OUT OF OR IN ANY WAY CONNECTED WITH THE USE OR PERFORMANCE OF THE Employee Portal WEB SITE, WITH THE DELAY OR INABILITY TO USE THE Employee Portal WEB SITE OR RELATED SERVICES, THE PROVISION OF OR FAILURE TO PROVIDE SERVICES, OR FOR ANY INFORMATION, SOFTWARE, PRODUCTS, SERVICES AND RELATED GRAPHICS OBTAINED THROUGH THE Employee Portal WEB SITE, OR OTHERWISE ARISING OUT OF THE USE OF THE Employee Portal WEB SITE, WHETHER BASED ON CONTRACT, TORT, NEGLIGENCE, STRICT LIABILITY OR OTHERWISE, EVEN IF Employee Portal OR ANY OF ITS SUPPLIERS HAS BEEN ADVISED OF THE POSSIBILITY OF DAMAGES. BECAUSE SOME STATES/JURISDICTIONS DO NOT ALLOW THE EXCLUSION OR LIMITATION OF LIABILITY FOR CONSEQUENTIAL OR INCIDENTAL DAMAGES, THE ABOVE LIMITATION MAY NOT APPLY TO YOU. IF YOU ARE DISSATISFIED WITH ANY PORTION OF THE Employee Portal WEB SITE, OR WITH ANY OF THESE TERMS OF USE, YOUR SOLE AND EXCLUSIVE REMEDY IS TO DISCONTINUE USING THE Employee Portal WEB SITE.
+
+SERVICE CONTACT : hr@integertel.com
+</p>
+				
+				<p><b>TERMINATION/ACCESS RESTRICTION</b></p>
+				<p>Employee Portal reserves the right, in its sole discretion, to terminate your access to the Employee Portal Web Site and the related services or any portion thereof at any time, without notice. GENERAL To the maximum extent permitted by law, this agreement is governed by the laws of the State of Texas, U.S.A. and you hereby consent to the exclusive jurisdiction and venue of courts in Dallas, Texas, U.S.A. in all disputes arising out of or relating to the use of the Employee Portal Web Site. Use of the Employee Portal Web Site is unauthorized in any jurisdiction that does not give effect to all provisions of these terms and conditions, including without limitation this paragraph. You agree that no joint venture, partnership, employment, or agency relationship exists between you and Employee Portal as a result of this agreement or use of the Employee Portal Web Site. Employee Portal's performance of this agreement is subject to existing laws and legal process, and nothing contained in this agreement is in derogation of Employee Portal's right to comply with governmental, court and law enforcement requests or requirements relating to your use of the Employee Portal Web Site or information provided to or gathered by Employee Portal with respect to such use. If any part of this agreement is determined to be invalid or unenforceable pursuant to applicable law including, but not limited to, the warranty disclaimers and liability limitations set forth above, then the invalid or unenforceable provision will be deemed superseded by a valid, enforceable provision that most closely matches the intent of the original provision and the remainder of the agreement shall continue in effect. Unless otherwise specified herein, this agreement constitutes the entire agreement between the user and Employee Portal with respect to the Employee Portal Web Site and it supersedes all prior or contemporaneous communications and proposals, whether electronic, oral or written, between the user and Employee Portal with respect to the Employee Portal Web Site. A printed version of this agreement and of any notice given in electronic form shall be admissible in judicial or administrative proceedings based upon or relating to this agreement to the same extent an d subject to the same conditions as other business documents and records originally generated and maintained in printed form. It is the express wish to the parties that this agreement and all related documents be drawn up in English.</p>
+				
+				<p><b>COPYRIGHT AND TRADEMARK NOTICES:</b></p>
+				<p>All contents of the Employee Portal Web Site are: Copyright 2021-2022 and/or its suppliers. All rights reserved.</p>
+				
+				<p><b>TRADEMARKS</b></p>
+				<p>The names of actual companies and products mentioned herein may be the trademarks of their respective owners.
+
+The example companies, organizations, products, people and events depicted herein are fictitious. No association with any real company, organization, product, person, or event is intended or should be inferred.
+
+Any rights not expressly granted herein are reserved.
+</p>
+				
+			
+			</div>
+			<div class="modal-footer">
+				<button type="button" class="btn btn-primary" data-bs-dismiss="modal">Agree</button>
+			</div>
+		</div><!-- /.modal-content -->
+	</div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
+
+        <!-- JAVASCRIPT -->
+        <script src="{% static 'libs/jquery/jquery.min.js' %}"></script>
+        <script src="{% static 'libs/bootstrap/js/bootstrap.bundle.min.js' %}"></script>
+        <script src="{% static 'libs/metismenu/metisMenu.min.js' %}"></script>
+        <script src="{% static 'libs/simplebar/simplebar.min.js' %}"></script>
+        <script src="{% static 'libs/node-waves/waves.min.js' %}"></script>
+        <script src="{% static 'libs/feather-icons/feather.min.js' %}"></script>
+        <!-- pace js -->
+        <script src="{% static 'libs/pace-js/pace.min.js' %}"></script>
+        <script src="{% static 'libs/sweetalert2/sweetalert2.min.js' %}"></script>
+        <!-- password addon init -->
+        <script src="{% static 'js/pages/pass-addon.init.js' %}"></script>
+        <script>
+
+
+            (function () {
+              'use strict'
+            
+              // Fetch all the forms we want to apply custom Bootstrap validation styles to
+              var forms = document.querySelectorAll('.needs-validation')
+            
+              // Loop over them and prevent submission
+              Array.prototype.slice.call(forms)
+                .forEach(function (form) {
+                    
+                  form.addEventListener('submit', function (event) {
+                      console.log(form);
+                    if (!form.checkValidity()) {
+                      event.preventDefault()
+                      event.stopPropagation()
+                    }
+            
+                    form.classList.add('was-validated')
+                  }, false)
+                })
+            })()
+            
+            
+             
+             $(function() {
+            $('#email').keydown(function(e) {
+                
+            if(e.keyCode==50){
+                 Swal.fire({
+                            icon: 'warning',
+                            title: "'@' is not allowed !",
+                            confirmButtonColor: "#5156be",
+                            
+                        });
+                 return false;
+            }else if(e.keyCode==32){
+                 return false;
+            }
+               
+            
+            });
+            
+            $('#email').on("keyup",function(e) {
+                var str= $(this).val();
+            var index = str.indexOf("@");    
+                if(index !== -1){
+                   Swal.fire({
+                            icon: 'warning',
+                            title: "Enter email id except @ keyword!",
+                            confirmButtonColor: "#5156be",
+                             allowOutsideClick: false ,
+                             preConfirm: function() {
+                            var in_str = str.split('@')[0];
+                            $('#email').val(in_str);
+                             }
+                        });
+                
+                } 
+               
+            
+            });
+            });
+            </script>
+    </body>
+
+</html>
