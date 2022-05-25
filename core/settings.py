@@ -142,9 +142,9 @@ MESSAGE_TAGS = {
 }
 
 EMAIL_BACKEND = "django.core.mail.backends.smtp.EmailBackend"
-EMAIL_HOST = "mail.integermobile.com"
-EMAIL_HOST_USER = "support@integermobile.com"
-EMAIL_HOST_PASSWORD = "softql@123"
+EMAIL_HOST = "<host>"
+EMAIL_HOST_USER = "<user>"
+EMAIL_HOST_PASSWORD = "<password>"
 EMAIL_POST = 587
 EMAIL_USE_TLS = True
 EMAIL_USE_SSL = False
